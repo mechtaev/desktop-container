@@ -11,11 +11,11 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-RUN apt-get -y install git emacs24-nox build-essential
+RUN apt-get -y install build-essential bash-completion git emacs24-nox
 
 RUN apt-get -y install sudo
 
-RUN useradd -m ubuntu && echo "ubuntu:ubuntu" | chpasswd && adduser ubuntu sudo
+RUN useradd -ms /bin/bash ubuntu && echo "ubuntu:ubuntu" | chpasswd && adduser ubuntu sudo
 
 USER ubuntu
 
